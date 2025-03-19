@@ -8,8 +8,8 @@ plugins {
     alias(libs.plugins.vanniktech.mavenPublish)
 }
 
-group = "io.github.kotlin"
-version = "1.0.0"
+group = "io.eleven19.kotlin.purl"
+version = "0.1.0"
 
 kotlin {
     jvm()
@@ -27,8 +27,9 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+            explicitApi()
             dependencies {
-                //put your multiplatform dependencies here
+                implementation(libs.ditchoom.buffer)
             }
         }
         val commonTest by getting {
@@ -40,7 +41,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.jetbrains.kotlinx.multiplatform.library.template"
+    namespace = "io.eleven19.kotlin.purl"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -56,31 +57,31 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates(group.toString(), "library", version.toString())
+    coordinates(group.toString(), "purl", version.toString())
 
     pom {
-        name = "My library"
-        description = "A library."
-        inceptionYear = "2024"
-        url = "https://github.com/kotlin/multiplatform-library-template/"
+        name = "Package URL Kotlin"
+        description = "Package URL implementation for Kotlin."
+        inceptionYear = "2025"
+        url = "https://github.com/Eleven19/purl-kotlin/"
         licenses {
             license {
-                name = "XXX"
-                url = "YYY"
-                distribution = "ZZZ"
+                name = "Apache-2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0"
+                distribution = "repo"
             }
         }
         developers {
             developer {
-                id = "XXX"
-                name = "YYY"
-                url = "ZZZ"
+                id = "DamianReeves"
+                name = "Damian Reeves"
+                url = "https://github.com/DamianReeves"
             }
         }
         scm {
-            url = "XXX"
-            connection = "YYY"
-            developerConnection = "ZZZ"
+            url = "https://github.com/Eleven19/purl-kotlin"
+            connection = "scm:git:git://github.com/Eleven19/purl-kotlin.git"
+            developerConnection = "scm:git:"
         }
     }
 }
